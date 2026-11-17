@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dika Chela – Guía visual de preparación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --chamoy:#d1121f;
+  --limon:#ffd23f;
+  --crema:#fff4c2;
+  --vino:#4d0a10;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Helvetica,Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--crema)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--crema);color:var(--chamoy);font-family:var(--sans);font-size:18px;line-height:1.5;text-transform:uppercase}
+
+/* Portada */
+.portada{text-align:center;padding:44px 20px 64px}
+.portada .sup{margin:0 0 10px;font-family:var(--serif);font-weight:900;font-size:clamp(18px,3vw,26px);letter-spacing:.01em}
+.portada h1{margin:0 auto;max-width:900px;font-family:var(--serif);font-weight:900;font-size:clamp(40px,10vw,96px);line-height:.9;letter-spacing:.01em}
+
+/* Olas */
+.ola{display:block;width:100%;height:60px}
+.ola-sup{margin-bottom:-1px}
+.ola-inf{margin-top:-1px}
+
+/* Banda roja con la guía */
+.banda{background:var(--chamoy);padding:20px 18px 56px}
+.guia{max-width:520px;margin:0 auto}
+
+.bar{display:flex;gap:8px;margin:0 0 22px}
+.bar i{flex:1;height:8px;border-radius:9px;background:rgba(255,210,63,.3);transition:background .3s}
+.bar i.on{background:var(--limon)}
+
+.card{background:var(--limon);color:var(--vino);border:2px solid var(--vino);border-radius:28px;box-shadow:6px 6px 0 var(--vino);overflow:hidden}
+.art{background:radial-gradient(circle at 50% 40%,#7a1520,var(--vino) 78%);padding:10px 10px 0;border-bottom:2px solid var(--vino)}
+.art svg{width:100%;height:auto;display:block;max-height:46vh}
+.body{padding:20px 22px 24px}
+.badge{display:inline-block;background:var(--chamoy);color:var(--limon);font-family:var(--serif);font-weight:900;font-size:14px;line-height:1.2;letter-spacing:.02em;border-radius:40px;padding:5px 16px}
+.body h2{margin:12px 0 8px;font-family:var(--serif);font-weight:900;font-size:30px;line-height:1;letter-spacing:.01em;color:var(--chamoy)}
+.body p{margin:0;font-weight:500;font-size:17px;line-height:1.45;color:var(--vino)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{background:var(--crema);color:var(--chamoy);border:2px solid var(--vino);border-radius:40px;font-weight:600;font-size:14px;line-height:1.2;padding:6px 14px}
+
+/* Botones */
+.nav{display:flex;gap:14px;margin-top:26px}
+.nav button{flex:1;font:inherit;font-family:var(--serif);font-weight:900;font-size:18px;line-height:1.1;text-transform:uppercase;padding:15px 12px;color:var(--chamoy);background:var(--crema);border:2px solid var(--vino);border-radius:40px;box-shadow:5px 5px 0 var(--vino);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.nav button.p{background:var(--limon)}
+.nav button:hover:not(:disabled){transform:translate(5px,5px);box-shadow:0 0 0 var(--vino)}
+.nav button:focus-visible{outline:3px solid var(--limon);outline-offset:3px}
+.nav button:disabled{opacity:.45;cursor:default}
+.end{min-height:28px;margin-top:20px;text-align:center;font-family:var(--serif);font-weight:900;font-size:22px;line-height:1.1;color:var(--limon)}
+
+.pie{height:32px;background:var(--crema)}
+
+@media (max-width:520px){
+  .portada{padding:32px 16px 48px}
+  .banda{padding:16px 14px 44px}
+  .body{padding:18px 18px 22px}
+  .body h2{font-size:26px}
+  .nav button{font-size:16px;padding:14px 8px}
+}
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <p class="sup">Dika Chela</p>
+  <h1>prepara tu michelada</h1>
+</header>
+
+<svg class="ola ola-sup" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#d1121f" d="M0 90V45C120 10 240 10 360 40s240 40 360 10 240-45 360-15 240 35 360 5V90Z"/>
+</svg>
+
+<main class="banda">
+  <div class="guia">
+    <div class="bar" id="bar"></div>
+    <div class="card">
+      <div class="art" id="art"></div>
+      <div class="body" aria-live="polite">
+        <span class="badge" id="badge"></span>
+        <h2 id="ttl"></h2>
+        <p id="txt"></p>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+    <div class="nav"><button id="prev">← Anterior</button><button id="next" class="p">Siguiente →</button></div>
+    <div class="end" id="end"></div>
+  </div>
+</main>
+
+<svg class="ola ola-inf" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="#d1121f" d="M0 0H1440V40C1320 80 1200 80 1080 50S840 10 720 40 480 85 360 55 120 10 0 45Z"/>
+</svg>
+<div class="pie"></div>
+
+<script>
+var G='rgba(255,255,255,.13)',ST='#cbd5e1',AC='#ffd23f';
+function pk(x,y,l,c,r){return '<g transform="rotate('+(r||0)+' '+(x+25)+' '+(y+30)+')"><rect x="'+x+'" y="'+y+'" width="50" height="60" rx="5" fill="'+c+'"/><path d="M'+x+' '+(y+7)+'h50" stroke="#fff" stroke-opacity=".5" stroke-dasharray="3 2"/><text x="'+(x+25)+'" y="'+(y+36)+'" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" font-family="sans-serif">'+l[0]+'</text><text x="'+(x+25)+'" y="'+(y+49)+'" font-size="9" fill="#fff" text-anchor="middle" font-family="sans-serif">'+l[1]+'</text></g>'}
+function glass(liq,rim){return '<path d="M90 80L210 80L192 200L108 200Z" fill="'+G+'" stroke="'+ST+'" stroke-width="3" stroke-linejoin="round"/>'+(rim?'<path d="M90 80H210" stroke="#e4572e" stroke-width="7" stroke-linecap="round"/>':'')+(liq||'')}
+function ice(){return '<g fill="#fff" fill-opacity=".45" stroke="#fff" stroke-opacity=".7"><rect x="118" y="150" width="30" height="30" rx="5" transform="rotate(-12 133 165)"/><rect x="150" y="138" width="30" height="30" rx="5" transform="rotate(10 165 153)"/><rect x="146" y="168" width="28" height="26" rx="5" transform="rotate(-6 160 181)"/></g>'}
+var sauce='<path d="M104 172L196 172L192 200L108 200Z" fill="#d1121f"/>';
+var beer='<path d="M95 100L205 100L192 200L108 200Z" fill="#e8a317"/><ellipse cx="150" cy="100" rx="55" ry="9" fill="#fff6dc"/><circle cx="125" cy="96" r="9" fill="#fff6dc"/><circle cx="160" cy="92" r="10" fill="#fff6dc"/><circle cx="182" cy="97" r="8" fill="#fff6dc"/>';
+function svg(s){return '<svg viewBox="0 0 300 230" role="img" aria-label="Ilustración del paso">'+s+'</svg>'}
+var S=[
+{t:'Escarchado del vaso',d:'Humedece el borde de tu vaso con un poco del Mix de salsas y pásalo sobre la Escarcha de michelada hasta cubrir bien la orilla.',c:['Mix de salsas 10 g','Escarcha 30 g'],
+ a:svg(pk(12,10,['Mix','10 g'],'#b91c1c',-8)+pk(238,10,['Escarcha','30 g'],'#d97706',8)+'<ellipse cx="150" cy="205" rx="105" ry="17" fill="#a35a1c"/><ellipse cx="150" cy="202" rx="88" ry="11" fill="#e4572e"/><path d="M98 50L202 50L222 175L78 175Z" fill="'+G+'" stroke="'+ST+'" stroke-width="3" stroke-linejoin="round" transform="translate(0 -12)"/><path d="M78 163H222" stroke="#e4572e" stroke-width="9" stroke-linecap="round"/><path d="M150 14v22m-9-9l9 10 9-10" stroke="'+AC+'" stroke-width="4" fill="none" stroke-linecap="round"/>')},
+{t:'Base de sabor',d:'Vierte el resto del Mix de salsas en el fondo del vaso y agrega hielo al gusto.',c:['Mix de salsas 10 g','Hielo'],
+ a:svg(pk(105,4,['Mix','10 g'],'#b91c1c',140)+'<path d="M140 62Q146 78 148 100" stroke="#d1121f" stroke-width="5" fill="none" stroke-linecap="round"/>'+glass(sauce+ice(),true))},
+{t:'Toque picante',d:'Agrega el contenido del sobre de Chile en polvo dentro del vaso para intensificar el sabor.',c:['Chile en polvo 10 g'],
+ a:svg(pk(105,4,['Chile','10 g'],'#c2410c',140)+'<g fill="#ea580c"><circle cx="140" cy="76" r="3"/><circle cx="150" cy="92" r="3.5"/><circle cx="136" cy="104" r="3"/><circle cx="158" cy="114" r="3"/><circle cx="146" cy="128" r="3.5"/></g>'+glass(sauce+ice(),true))},
+{t:'Mezcla principal',d:'Sirve lentamente tu cerveza o bebida fría favorita dentro del vaso, para integrar todos los concentrados sin derramar la espuma.',c:['Cerveza o bebida fría'],
+ a:svg('<g transform="translate(112 58) rotate(140)"><rect x="-7" y="0" width="14" height="34" fill="#7c4a12"/><rect x="-18" y="30" width="36" height="86" rx="12" fill="#a8620f"/><rect x="-18" y="62" width="36" height="28" fill="#f3e3b5"/></g><path d="M118 70Q130 90 142 106" stroke="#e8a317" stroke-width="6" fill="none" stroke-linecap="round"/>'+glass(beer,true)+ice())},
+{t:'Decoración final',d:'Coloca las Gomitas enchiladas en la parte superior e inserta la Banderilla de tamarindo para disfrutar.',c:['Gomitas enchiladas 20 g','Banderilla de tamarindo 25 g'],
+ a:svg(glass(beer,true)+'<g><rect x="108" y="58" width="22" height="22" rx="7" fill="#dc2626"/><rect x="132" y="52" width="22" height="22" rx="7" fill="#f97316"/><rect x="156" y="58" width="22" height="22" rx="7" fill="#dc2626"/></g><g fill="#fff" fill-opacity=".8"><circle cx="116" cy="66" r="1.5"/><circle cx="140" cy="60" r="1.5"/><circle cx="168" cy="66" r="1.5"/></g><path d="M232 14L168 122" stroke="#d6b27a" stroke-width="3" stroke-linecap="round"/><g fill="#7a3b12"><rect x="218" y="22" width="22" height="16" rx="8" transform="rotate(-60 229 30)"/><rect x="204" y="46" width="22" height="16" rx="8" transform="rotate(-60 215 54)"/></g><path d="M192 66l-5 6" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>')}
+];
+var i=0,bar=document.getElementById('bar');
+S.forEach(function(){bar.appendChild(document.createElement('i'))});
+function show(n,skip){
+  i=Math.max(0,Math.min(S.length-1,n));var s=S[i];
+  document.getElementById('art').innerHTML=s.a;
+  document.getElementById('badge').textContent='Paso '+(i+1)+' de '+S.length;
+  document.getElementById('ttl').textContent=s.t;
+  document.getElementById('txt').textContent=s.d;
+  document.getElementById('chips').innerHTML=s.c.map(function(x){return '<span>'+x+'</span>'}).join('');
+  [].forEach.call(bar.children,function(b,k){b.className=k<=i?'on':''});
+  document.getElementById('prev').disabled=i===0;
+  var nx=document.getElementById('next');nx.textContent=i===S.length-1?'Volver al inicio':'Siguiente →';
+  document.getElementById('end').textContent=i===S.length-1?'¡Salud! Disfruta tu Dika Chela 🍺':'';
+  if(!skip){try{history.replaceState(null,'','#paso-'+(i+1))}catch(e){}}
+}
+document.getElementById('prev').onclick=function(){show(i-1)};
+document.getElementById('next').onclick=function(){show(i===S.length-1?0:i+1)};
+var x0=null;
+document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)show(d<0?i+1:i-1);x0=null},{passive:true});
+function fromHash(){var m=/paso-(\d)/.exec(location.hash);show(m?+m[1]-1:0,true)}
+window.addEventListener('hashchange',fromHash);fromHash();
+</script>
+</body>
+</html>
